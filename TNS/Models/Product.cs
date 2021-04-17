@@ -1,9 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel;
 
 namespace TNS.Models
 {
@@ -21,12 +18,14 @@ namespace TNS.Models
         public string Title { get; set; }
 
         [BsonElement("short_description")]
+        [DisplayName("Short Description")]
         public string ShortDescription { get; set; }
 
         [BsonElement("price")]
         public int Price { get; set; }
 
         [BsonElement("discount_percent")]
+        [DisplayName("Discount Percent")]
         public byte DiscountPercent { get; set; }
 
         [BsonRepresentation(BsonType.String), BsonElement("status")]
@@ -36,6 +35,7 @@ namespace TNS.Models
         public string Details { get; set; }
 
         [BsonElement("guagantee_month")]
+        [DisplayName("Guagantee Month")]
         public byte GuaganteeMonth { get; set; }
 
         [BsonElement("image")]
