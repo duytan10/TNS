@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(TNS.Startup))]
+[assembly: OwinStartup(typeof(TNS.Startup))]
 namespace TNS
 {
     public partial class Startup

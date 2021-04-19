@@ -1,41 +1,125 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
+    @Styles.Render("~/Content/css/global.min.css")
+    <title>@ViewBag.Title | TNS</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="/">NTS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Product">Product</a>
-                </li>
-            </ul>
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <span> Hotline : 090 3050 398 &bull; Email: namnt18@uef.edu.vn </span>
+            </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div class="header__main">
+            <div class="container">
+                <div class="header__logo">
+                    <a href="/">
+                        <img src="~/Content/Images/logo.png" alt="Logo của TNS" />
+                    </a>
+                </div>
+                <form id="search-form">
+                    <div class="search-box">
+                        <div class="search-box__keyword">
+                            <input type="text" placeholder="Nhập sản phẩm cần tìm ..." />
+                        </div>
+                        <div class="search-box__select"></div>
+                    </div>
+                </form>
+                <div class="header__cart">
+                    <i class="fas fa-shopping-cart header__cart__icon"></i>
+                    <span class="header__cart__amount">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <div class="container">
+                <div class="header__bottom__left">
+                    <div class="header__bottom__left__item">
+                        <i class="fas fa-laptop"></i>
+                        <span>DANH MỤC SẢN PHẨM</span>
+                    </div>
+                    <div class="header__bottom__left__item">
+                        <i class="fas fa-wrench"></i>
+                        <a href="#">XÂY DỰNG CẤU HÌNH</a>
+                    </div>
+                    <div class="header__bottom__left__item">
+                        <i class="fas fa-tag"></i>
+                        <a href="#">SẢN PHẨM GIẢM GIÁ</a>
+                    </div>
+                </div>
+                <div class="header__bottom__right">
+                    <a href="https://www.facebook.com/cyberbot.x66"
+                       rel="noopener noreferrer"
+                       target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="container">
+                <div>
+                    <h4 class="footer__top__title">Thông tin chung</h4>
+                    <div class="footer__top__group">
+                        <a href="#">Giới thiệu</a>
+                        <a href="#">Tuyển dụng</a>
+                        <a href="#">Tin tức</a>
+                        <a href="#">Ý kiến khách hàng</a>
+                        <a href="#">Lên hệ hợp tác</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__top__title">Chính sách chung</h4>
+                    <div class="footer__top__group">
+                        <a href="#">Quy định chung</a>
+                        <a href="#">Chính sách vận chuyển</a>
+                        <a href="#">Chính sách bảo hành</a>
+                        <a href="#">Chính sách đổi, trả lại hàng</a>
+                        <a href="#">Chính sách cho doanh nghiệp</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__top__title">Thông tin khuyến mãi</h4>
+                    <div class="footer__top__group">
+                        <a href="#">Sản phẩm bán chạy</a>
+                        <a href="#">Sản phẩm khuyến mãi</a>
+                        <a href="#">Hàng thanh lý</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__top__title">Follow us!</h4>
+                    <div class="footer__top__list">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <span>
+                    &copy; @DateTime.Now.Year - Bản quyền thuộc nhóm TNS - Trường Đại học Kinh tế Tài
+                    Chính TP. HCM
+                </span>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("https://kit.fontawesome.com/7adaed3120.js")
 </body>
 </html>

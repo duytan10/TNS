@@ -249,23 +249,51 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\ban-phim-keychron-k3-1-500x500.jpg" />
-    <Content Include="Content\Images\ban-phim-keychron-k3-a.jpg" />
-    <Content Include="Content\Images\chuot-gaming-asus-rog-strix-impact-ii-gundam-edition-8-500x500.jpg" />
-    <Content Include="Content\Images\ram-klevv-rgb-16gb-2x8gb-ddr4-bus-3600-mhz-1-500x500.jpg" />
-    <Content Include="Content\Images\ram-klevv-rgb-16gb-2x8gb-ddr4-bus-3600-mhz-a.jpg" />
+    <Content Include="Content\css\global.min.css" />
+    <Content Include="Content\css\home.min.css" />
+    <Content Include="Content\css\product.min.css" />
+    <Content Include="Content\css\tab.min.css" />
+    <Content Include="Content\Images\banners\banner-15-03-2021.png" />
+    <Content Include="Content\Images\banners\banner-16-03-2021.png" />
+    <Content Include="Content\Images\banners\banner-21-03-2021.png" />
+    <Content Include="Content\Images\banners\banner-23-03-2021.png" />
+    <Content Include="Content\Images\banners\banner-26-03-2021.jpg" />
+    <Content Include="Content\Images\banners\banner-27-03-2021.jpg" />
+    <Content Include="Content\Images\banners\banner-29-03-2021.jpg" />
+    <Content Include="Content\Images\brands\akko-logo.jpg" />
+    <Content Include="Content\Images\brands\akracing-logo.png" />
+    <Content Include="Content\Images\brands\apple-logo.jpg" />
+    <Content Include="Content\Images\brands\asrock-logo.jpg" />
+    <Content Include="Content\Images\brands\asus-logo.png" />
+    <Content Include="Content\Images\brands\coolermaste-logo.png" />
+    <Content Include="Content\Images\brands\corsair-logo.png" />
+    <Content Include="Content\Images\brands\dell-logo.png" />
+    <Content Include="Content\Images\brands\filco-logo.png" />
+    <Content Include="Content\Images\brands\fuhlen-logo.jpg" />
+    <Content Include="Content\Images\brands\galax-logo.png" />
+    <Content Include="Content\Images\brands\gigabyte-logo.png" />
+    <Content Include="Content\Images\brands\hp-logo.png" />
+    <Content Include="Content\Images\brands\intel-logo.jpg" />
+    <Content Include="Content\Images\brands\keychron-logo.png" />
+    <Content Include="Content\Images\brands\kingston-logo.png" />
+    <Content Include="Content\Images\categories\ban-ghe.png" />
+    <Content Include="Content\Images\categories\gaming-gear.png" />
+    <Content Include="Content\Images\categories\gaming-laptop.png" />
+    <Content Include="Content\Images\categories\gaming-workstation.png" />
+    <Content Include="Content\Images\categories\linh-kien.png" />
+    <Content Include="Content\Images\categories\man-hinh.png" />
+    <Content Include="Content\Images\categories\phu-kien.png" />
+    <Content Include="Content\Images\categories\thiet-bi-mang.png" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\logo-monochrome.svg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\products\ban-phim-keychron-k3.jpg" />
+    <Content Include="Content\js\splide.min.js" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="mongocrypt.dll" />
     <Content Include="libmongocrypt.so" />
     <Content Include="libmongocrypt.dylib" />
@@ -286,12 +314,6 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -484,4 +506,11 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
 </Project>

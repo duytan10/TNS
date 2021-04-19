@@ -1,45 +1,422 @@
-﻿@model IEnumerable<TNS.Models.Test>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Trang chủ";
 }
 
-<h2>Index</h2>
+@Styles.Render("~/Content/css/home.min.css")
+@Styles.Render("~/Content/css/product.min.css")
+@Styles.Render("https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Details)
-        </th>
-        <th></th>
-    </tr>
+<div class="container splide home__banner">
+    <div class="splide__track">
+        <div class="splide__list">
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-15-03-2021.png"
+                     alt="" />
+            </div>
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-16-03-2021.png"
+                     alt="" />
+            </div>
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-21-03-2021.png"
+                     alt="" />
+            </div>
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-23-03-2021.png"
+                     alt="" />
+            </div>
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-26-03-2021.jpg"
+                     alt="" />
+            </div><div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-27-03-2021.jpg"
+                     alt="" />
+            </div>
+            <div class="splide__slide home__banner__slide">
+                <img src="~/Content/Images/banners/banner-29-03-2021.jpg"
+                     alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container home__block">
+    <div class="title">
+        <span class="title__content">DANH MỤC SẢN PHẨM</span>
+    </div>
+    <div class="home__category">
+        <a class="home__category__item" href="#">
+            <div style="background-color: #ff8f02"></div>
+            <img src="~/Content/Images/categories/gaming-workstation.png" alt="" />
+            <span>
+                GAMING
+                <br />
+                WORKSTAION
+                <br />
+                PC
+            </span>
+        </a>
+        <a class="home__category__item" href="/pages/category-details.html">
+            <div style="background-color: #fff200"></div>
+            <img src="~/Content/Images/categories/gaming-laptop.png" alt="" />
+            <span>
+                GAMING
+                <br />
+                LAPTOP
+            </span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #1eec18"></div>
+            <img src="~/Content/Images/categories/gaming-gear.png" alt="" />
+            <span>GAMING GEAR</span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #8e07ef"></div>
+            <img src="~/Content/Images/categories/phu-kien.png" alt="" />
+            <span>
+                PHỤ KIỆN
+                <br />
+                TẢN NHIỆT PC
+            </span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #00f9c9"></div>
+            <img src="~/Content/Images/categories/linh-kien.png" alt="" />
+            <span>
+                LINH KIỆN
+                <br />
+                MÁY TÍNH
+            </span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #f9495f"></div>
+            <img src="~/Content/Images/categories/man-hinh.png" alt="" />
+            <span>
+                MÀN HÌNH
+                <br />
+                MÁY TÍNH
+            </span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #665dea"></div>
+            <img src="~/Content/Images/categories/ban-ghe.png" alt="" />
+            <span>
+                BÀN GHẾ
+                <br />
+                GAMING
+            </span>
+        </a>
+        <a class="home__category__item" href="#">
+            <div style="background-color: #f1e89b"></div>
+            <img src="~/Content/Images/categories/thiet-bi-mang.png" alt="" />
+            <span>THIẾT BỊ MẠNG</span>
+        </a>
+    </div>
+</div>
+<div class="container home__block">
+    <div class="title">
+        <span class="title__content">SẢN PHẨM GIẢM GIÁ</span>
+    </div>
+    <div class="splide home__sale-off">
+        <div class="splide__track">
+            <div class="splide__list">
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-6%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/vga/msi/1650%20Super%20Gaming%20X/card-man-hinh-msi-gtx-1650-super-gaming-x-trio-1-228x228.png"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Card Màn Hình MSI Geforce GTX 1650 Super Gaming X">
+                            Card Màn Hình MSI Geforce GTX 1650 Super Gaming X
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">7.990.000 đ</div>
+                            <div class="product__price__old">8.490.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-3%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/Avata%20Laptop/Aspire%207-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Laptop Acer Aspire 7 A715-42G-R4ST R5-5500U/ 8GB/ 256GB/ GTX
+                  1650 4GB/ 15.6 inch FHD/ Win 10">
+                            Laptop Acer Aspire 7 A715-42G-R4ST R5-5500U/ 8GB/ 256GB/ GTX
+                            1650 4GB/ 15.6 inch FHD/ Win 10
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">17.990.000 đ</div>
+                            <div class="product__price__old">18.490.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/Product/Details/607854def76af3c7c481322f" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-14%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/b%C3%A0n%20ph%C3%ADm%20c%C6%A1/Keychorn/Keychron%20K3/ban-phim-keychron-k3-1-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Bàn Phím Cơ Bluetooth Keychron K3 Led RGB - Blue Switch">
+                            Bàn Phím Cơ Bluetooth Keychron K3 Led RGB - Blue Switch
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">2.190.000 đ</div>
+                            <div class="product__price__old">1.890.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span></span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/vga/galax/GTX%201650%20Super%201CO/card-man-hinh-galax-gtx-1650-super-ex-1-click-oc-01-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Card Màn Hình Galax Geforce GTX 1650 Super ( 1-Click OC )">
+                            Card Màn Hình Galax Geforce GTX 1650 Super ( 1-Click OC )
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">7.390.000 đ</div>
+                            <div class="product__price__old"></div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-5%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/Avata%20Laptop/Bravo%2015-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Laptop MSI Bravo 15 A4DCR 270VN Ryzen 5 4600H/ 8GB/ 256GB NVMe/ RX5300M/ 15.6''/ Windows 10 Home">
+                            Laptop MSI Bravo 15 A4DCR 270VN Ryzen 5 4600H/ 8GB/ 256GB
+                            NVMe/ RX5300M/ 15.6''/ Windows 10 Home
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">18.290.000 đ</div>
+                            <div class="product__price__old">19.290.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-15%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/chu%E1%BB%99t/Logitech/G604/chuot-logitech-g604-lightspeed-5-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Chuột Logitech G604 Light Speed Wireless">
+                            Chuột Logitech G604 Light Speed Wireless
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">1.690.000 đ</div>
+                            <div class="product__price__old">1.999.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="home__readmore">
+        <a href="#">XEM THÊM</a>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="container home__block">
+    <div class="title">
+        <span class="title__content">SẢN PHẨM NỔI BẬT</span>
+    </div>
+    <div class="home__featured-product">
+        <a href="#" class="home__featured-product__item">
+            <img src="https://www.tncstore.vn/image/catalog/banner/2021/N%E1%BB%95i%20B%E1%BA%ADt/rapoo-tnc.png"
+                 alt="" />
+        </a>
+        <a href="#" class="home__featured-product__item">
+            <img src="https://www.tncstore.vn/image/catalog/banner/2021/N%E1%BB%95i%20B%E1%BA%ADt/Gh%E1%BA%BF%20MSI%20CH120.png"
+                 alt="" />
+        </a>
+        <a href="#" class="home__featured-product__item">
+            <img src="https://www.tncstore.vn/image/catalog/banner/2021/N%E1%BB%95i%20B%E1%BA%ADt/msi-G27CQ4-.jpg"
+                 alt="" />
+        </a>
+        <a href="#" class="home__featured-product__item">
+            <img src="https://www.tncstore.vn/image/catalog/banner/2021/N%E1%BB%95i%20B%E1%BA%ADt/BJX-tnc.png"
+                 alt="" />
+        </a>
+        <a href="#" class="home__featured-product__item">
+            <img src="https://www.tncstore.vn/image/catalog/banner/2021/N%E1%BB%95i%20B%E1%BA%ADt/Huracan-tnc.png"
+                 alt="" />
+        </a>
+    </div>
+    <div class="home__readmore">
+        <a href="#">XEM THÊM</a>
+    </div>
+</div>
 
-</table>
+<div class="container home__block">
+    <div class="title">
+        <span class="title__content">CÁC THƯƠNG HIỆU</span>
+    </div>
+    <div class="splide home__brand">
+        <div class="splide__track">
+            <div class="splide__list">
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/akko-logo.jpg" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/akracing-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/apple-logo.jpg" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/asrock-logo.jpg" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/asus-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/coolermaste-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/corsair-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/dell-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/filco-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/fuhlen-logo.jpg" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/galax-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/gigabyte-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/hp-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/intel-logo.jpg" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/keychron-logo.png" alt="" />
+                </div>
+                <div class="splide__slide home__brand__item">
+                    <img src="~/Content/Images/brands/kingston-logo.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Content/js/splide.min.js")
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        new Splide('.home__banner', {
+            type: 'loop',
+            autoplay: true,
+        }).mount();
+
+        new Splide('.home__sale-off', {
+            type: 'loop',
+            perPage: 4,
+            perMove: 1,
+            autoplay: true,
+            pagination: false,
+        }).mount();
+
+        new Splide('.home__brand', {
+            type: 'loop',
+            perPage: 6,
+            perMove: 1,
+            autoplay: true,
+            pagination: false,
+        }).mount();
+    });
+</script>
