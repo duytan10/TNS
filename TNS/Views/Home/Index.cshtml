@@ -4,7 +4,7 @@
 
 @Styles.Render("~/Content/css/home.min.css")
 @Styles.Render("~/Content/css/product.min.css")
-@Styles.Render("https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css")
+@Styles.Render("~/Content/css/splide.min.css")
 
 <div class="container splide home__banner">
     <div class="splide__track">
@@ -395,7 +395,7 @@
     </div>
 </div>
 
-@Scripts.Render("~/Content/js/splide.min.js")
+@Scripts.Render("~/Scripts/splide.min.js")
 <script>
     window.addEventListener('DOMContentLoaded', function () {
         new Splide('.home__banner', {
