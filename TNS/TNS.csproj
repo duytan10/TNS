@@ -288,11 +288,12 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\logo-monochrome.svg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\product-details\chuot-gaming-asus-rog-strix-impact-ii-gundam.jpg" />
     <Content Include="Content\Images\products\ban-phim-keychron-k3.jpg" />
-    <Content Include="Scripts\splide.min.js" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
+    <Content Include="Scripts\splide.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="mongocrypt.dll" />
@@ -386,7 +387,6 @@
     <Error Condition="!Exists('..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets'))" />
   </Target>
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.2.1\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.2.1\build\MongoDB.Libmongocrypt.targets')" />
-  <Import Project="..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets" Condition="Exists('..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -400,4 +400,5 @@
     <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
     <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
+  <Import Project="..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets" Condition="Exists('..\packages\MongoDB.Driver.Core.2.12.2\build\MongoDB.Driver.Core.targets')" />
 </Project>

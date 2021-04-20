@@ -67,11 +67,11 @@ namespace TNS.Controllers
                     Builders<Product>.Filter.Eq("Id", product.Id),
                     Builders<Product>.Update
                         .Set("Title", product.Title)
-                        .Set("ShortDescription", product.ShortDescription)
+                        .Set("ShortDescription", product.ShortDescriptions)
                         .Set("DiscountPercent", product.DiscountPercent)
                         .Set("Details", product.Details)
-                        .Set("GuaganteeMonth", product.GuaganteeMonth)
-                        .Set("Image", product.Image)
+                        .Set("GuaganteeMonth", product.GuaranteeMonth)
+                        .Set("Image", product.Images)
                         .Set("Type", product.Type)
                 );
 

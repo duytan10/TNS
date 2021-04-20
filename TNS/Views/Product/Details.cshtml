@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using TNS.Models
 @model TNS.Models.Product
 
 @{
@@ -21,20 +22,26 @@
             <div class="splide product-details__main-slider">
                 <div class="splide__track">
                     <div class="splide__list">
-                        <div class="splide__slide product-details__main-slide">
-                            <img src="~/Content/Images/products/ban-phim-keychron-k3.jpg"
-                                 alt="" />
-                        </div>
+                        @foreach (string image in Model.Images)
+                        {
+                            <div class="splide__slide product-details__main-slide">
+                                <img src="@image"
+                                     alt="" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
             <div class="splide product-details__thumb-slider">
                 <div class="splide__track">
                     <div class="splide__list">
-                        <div class="splide__slide product-details__thumb-slide">
-                            <img src="~/Content/Images/products/ban-phim-keychron-k3.jpg"
-                                 alt="" />
-                        </div>
+                        @foreach (string image in Model.Images)
+                        {
+                            <div class="splide__slide product-details__thumb-slide">
+                                <img src="@image"
+                                     alt="" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -55,16 +62,15 @@
                         <p class="product__rate__amount">0 đánh giá</p>
                     </div>
                     <div class="product-details__guarantee">
-                        <span>Bảo hành @Model.GuaganteeMonth tháng</span>
+                        <span>Bảo hành @Model.GuaranteeMonth tháng</span>
                     </div>
                 </div>
                 <div class="product-details__short-description">
                     <ul>
-                        <li>Dạng LED: RGB</li>
-                        <li>Dạng bàn phím: Phím cơ</li>
-                        <li>Loại Switch: Gateron Blue Switch</li>
-                        <li>Kích thước phím: 75%</li>
-                        <li>Kê tay: Không</li>
+                        @foreach (string shortDescription in Model.ShortDescriptions)
+                        {
+                            <li>@shortDescription</li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -72,7 +78,7 @@
                 <div>
                     <div class="product-details__status" data-status="@Model.Status.ToString().ToLower()">
                         <i class="fa fa-circle"></i>
-                        <span>@Model.Status.ToString().ToUpper()</span>
+                        <span>@Model.StatusType[Model.Status.ToString()].ToString().ToUpper()</span>
                     </div>
                     <div class="product-details__quantity">
                         <span>Số lượng</span>
@@ -135,14 +141,17 @@
             </div>
             <div class="tab__content">
                 <div id="details" class="active" data-tab-content>
-                    <span>
-                        Bàn Phím Cơ Bluetooth Keychron K3 là dòng phím bluetooth mới
-                        nhất đến từ Keychron, với thiết kế low profile cho kích thước
-                        phím siêu mỏng nhẹ đem đến sự thuận tiện trong quá trình làm
-                        việc, Sản phẩm đã có mặt tại <a href="/">TN Store</a>.
-                    </span>
-                    <img src="https://www.tncstore.vn/image/catalog/bàn phím cơ/Keychorn/Keychron K3/ban-phim-keychron-k3-a.jpg"
-                         alt="" />
+                    @foreach (var item in Model.Details)
+                    {
+                        if (item.Type == ProductDetailType.Text)
+                        {
+                            <span>@item.Content</span>
+                        }
+                        else
+                        {
+                            <img src="@item.Content" alt="" />
+                        }
+                    }
                 </div>
                 <div id="specifications" data-tab-content></div>
                 <div id="reviews" data-tab-content></div>
@@ -323,18 +332,12 @@
             {
                 pagination: false,
                 rewind: true,
-                fixedWidth: 100,
-                fixedHeight: 64,
+                fixedWidth: 160,
+                fixedHeight: 110,
                 isNavigation: true,
-                gap: 10,
-                focus: 'center',
+                gap: 30,
+                focus: 'left',
                 cover: true,
-                breakpoints: {
-                    600: {
-                        fixedWidth: 66,
-                        fixedHeight: 40,
-                    },
-                },
             }
         ).mount();
 
@@ -362,6 +365,8 @@
 
                 tab.classList.add('active');
                 target.classList.add('active');
+
+                console.log({ tab, target })
             });
         });
     });
