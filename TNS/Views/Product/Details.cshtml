@@ -1,4 +1,4 @@
-﻿@model TNS.Models.Product
+﻿@model TNS.Models.Category
 
 @{
     ViewBag.Title = "Details";
@@ -11,51 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiscountPercent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiscountPercent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Details)
-        </dt>
-
-        <dd>
-            <img src="@Model.Details"/>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GuaganteeMonth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GuaganteeMonth)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
@@ -63,17 +23,8 @@
         </dt>
 
         <dd>
-            <img src="@Model.Image" />
+            @Html.DisplayFor(model => model.Image)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
     </dl>
 </div>
 <p>

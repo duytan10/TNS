@@ -9,28 +9,28 @@ namespace TNS.Controllers
 {
     public class ProductController : Controller
     {
-        private static IMongoCollection<Product> productCollection;
-        private static List<Product> productList;
+        private static IMongoCollection<Category> categoryCollection;
+        private static List<Category> categoryList;
 
         public ProductController()
         {
             Mongo mongo = new Mongo();
-            productCollection = mongo.db.GetCollection<Product>("products");
-            productList = productCollection.Find(new BsonDocument()).ToList();
+            categoryCollection = mongo.db.GetCollection<Category>("category");
+            categoryList = categoryCollection.Find(new BsonDocument()).ToList();
         }
 
         // GET: Product
         public ActionResult Index()
         {
-            return View(productList);
+            return View(categoryList);
         }
 
         // GET: Product/Details/5
         public ActionResult Details(string id)
         {
-            Product product = productList.Find(item => item.Id.ToString().CompareTo(id) == 0);
+            Category category = categoryList.Find(item => item.Id.ToString().CompareTo(id) == 0);
 
-            return View(product);
+            return View(category);
         }
     }
 }
