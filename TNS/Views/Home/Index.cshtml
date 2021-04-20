@@ -1,4 +1,5 @@
 ﻿@model List<TNS.Models.Category>
+
 @{
     ViewBag.Title = "Trang chủ";
 }
@@ -45,15 +46,19 @@
         <span class="title__content">DANH MỤC SẢN PHẨM</span>
     </div>
     <div class="home__category">
-        @foreach (var item in Model)
-        {
-            <a class="home__category__item" href="/Category/Index/@item.Id">
-                <div style="background-color: #ff8f02"></div>
-                <img src="~/Content/Images/categories/gaming-workstation.png" alt="" />
-                <span>
-                    @item.Name
-                </span>
-            </a>
+        @{
+            List<string> colors = new List<string>(new string[] {
+                "#ff8f02", "#fff200", "#1eec18", "#8e07ef", "#00f9c9", "#f9495f", "#665dea", "#f1e89b"
+            });
+
+            foreach (var (item, index) in Model.Select((item, index) => (item, index)))
+            {
+                <a class="home__category__item" href="/Category/Index/@item.Id">
+                    <div style="background-color: @colors[index]"></div>
+                    <img src="@item.Image" alt="" />
+                    <span>@item.Name</span>
+                </a>
+            }
         }
     </div>
 </div>
@@ -88,7 +93,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">7.990.000 đ</div>
+                            <div class="product__price__current">7.990.000 đ</div>
                             <div class="product__price__old">8.490.000 đ</div>
                         </div>
                     </div>
@@ -119,7 +124,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">17.990.000 đ</div>
+                            <div class="product__price__current">17.990.000 đ</div>
                             <div class="product__price__old">18.490.000 đ</div>
                         </div>
                     </div>
@@ -148,7 +153,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">2.190.000 đ</div>
+                            <div class="product__price__current">2.190.000 đ</div>
                             <div class="product__price__old">1.890.000 đ</div>
                         </div>
                     </div>
@@ -177,7 +182,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">7.390.000 đ</div>
+                            <div class="product__price__current">7.390.000 đ</div>
                             <div class="product__price__old"></div>
                         </div>
                     </div>
@@ -207,7 +212,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">18.290.000 đ</div>
+                            <div class="product__price__current">18.290.000 đ</div>
                             <div class="product__price__old">19.290.000 đ</div>
                         </div>
                     </div>
@@ -236,7 +241,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">1.690.000 đ</div>
+                            <div class="product__price__current">1.690.000 đ</div>
                             <div class="product__price__old">1.999.000 đ</div>
                         </div>
                     </div>

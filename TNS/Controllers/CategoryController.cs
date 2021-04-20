@@ -13,7 +13,6 @@ namespace TNS.Controllers
         private static List<Category> categoryList;
 
         private static IMongoCollection<Product> productCollection;
-        private static List<Product> productList;
 
         public CategoryController()
         {
@@ -23,12 +22,14 @@ namespace TNS.Controllers
             categoryList = categoryCollection.Find(new BsonDocument()).ToList();
         }
 
-        // GET: Category
         public ActionResult Index(string id)
         {
-            List<ObjectId> objectIds = categoryList.Find(item => item.Id.ToString().CompareTo(id) == 0).ProductIds;
+            Category category = categoryList.Find(item => item.Id.ToString().CompareTo(id) == 0);
+            List<Product> relatedProducts = GetRelatedproducts(category.ProductIds);
 
-            List<Product> relatedProducts = GetRelatedproducts(objectIds);
+            ViewBag.Id = category.Id.ToString();
+            ViewBag.Title = category.Name;
+            ViewBag.ProductAmount = category.ProductIds.Count;
 
             return View(relatedProducts);
         }

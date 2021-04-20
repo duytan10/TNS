@@ -19,10 +19,11 @@ namespace TNS.Controllers
             productList = productCollection.Find(new BsonDocument()).ToList();
         }
 
-        public ActionResult Index(string id)
+        public ActionResult Index(string id, string categoryId, string category)
         {
             Product product = productList.Find(item => item.Id.ToString().CompareTo(id) == 0);
-
+            ViewBag.CategoryId = categoryId;
+            ViewBag.Category = category;
             return View(product);
         }
     }

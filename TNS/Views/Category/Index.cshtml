@@ -1,66 +1,130 @@
 ﻿@using System.Globalization
-@using TNS.Models
 @model List<TNS.Models.Product>
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
-
+@Styles.Render("~/Content/css/category.min.css")
 @Styles.Render("~/Content/css/product.min.css")
+@Styles.Render("~/Content/css/filter.min.css")
 
 <div class="container">
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <a href="/Product/Index/@item.Id" class="splide__slide product">
-                <div class="product__discount">
-                    <span>-6%</span>
+    <ul class="breadcrumb">
+        <li><a href="/">Trang chủ</a></li>
+        <li>@ViewBag.Title</li>
+    </ul>
+</div>
+<div class="container category-details">
+    <aside class="category-details__sidebar">
+        <h3>Bộ lọc sản phẩm</h3>
+        <div class="category-details__sidebar__filter">
+            <div class="filter">
+                <div class="filter__header open">
+                    <span>Hãng sản xuất</span>
+                    <i class="fas fa-chevron-down filter__header__chevron"></i>
                 </div>
-                <div class="product__thumb">
-                    <img src="@item.Images[0]"
-                         alt="" />
-                </div>
-                <div class="product__body">
-                    <p class="product__title"
-                       title="@item.Title">
-                        @item.Title
-                    </p>
-                    <div class="product__rate">
-                        <div class="product__rate__star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="product__rate__amount">0 đánh giá</p>
+                <form class="filter__body">
+                    <div class="filter__search-bar">
+                        <input type="text" placeholder="Tìm hãng sản xuất" />
+                        <i class="fas fa-search filter__search-icon"></i>
                     </div>
-                    <div class="product__price">
-                        @{
-                            NumberFormatInfo nfi = new CultureInfo("vi-VN", false).NumberFormat;
-                            nfi.CurrencyDecimalDigits = 0;
+                    <div class="filter__brand-search">
+                        <label class="filter__checkbox" for="msi">
+                            <input type="checkbox" name="brand" id="msi" />
+                            <span class="filter__checkmark"></span>
+                            MSI
+                        </label>
+                        <label class="filter__checkbox" for="acer">
+                            <input type="checkbox" name="brand" id="acer" />
+                            <span class="filter__checkmark"></span>
+                            ACER
+                        </label>
+                        <label class="filter__checkbox" for="asus">
+                            <input type="checkbox" name="brand" id="asus" />
+                            <span class="filter__checkmark"></span>
+                            ASUS
+                        </label>
+                    </div>
+                    <input class="button" type="submit" value="Áp dụng" />
+                </form>
+            </div>
+        </div>
+    </aside>
+    <div class="category-details__list">
+        <div class="category-details__header">
+            <h3>
+                @ViewBag.Title
+                <small>(@ViewBag.ProductAmount sản phẩm)</small>
+            </h3>
+            <div class="category-details__sort">
+                <label for="product-sort">Sắp xếp theo:</label>
+                <select name="product-sort" id="product-sort">
+                    <option value="newest">Mới nhất</option>
+                    <option value="price-asc">Giá (Thấp - Cao)</option>
+                    <option value="price-desc">Giá (Cao - Thấp)</option>
+                    <option value="alphabet-asc">Tên (A - Z)</option>
+                    <option value="alphabet-desc">Tên (Z - A)</option>
+                </select>
+            </div>
+        </div>
+        <div class="category-details__product">
+            @foreach (var item in Model)
+            {
+                <a href="/Product/Index/@item.Id?categoryId=@ViewBag.Id&category=@ViewBag.Title" class="product">
+                    <div class="product__discount">
+                        <span>-@item.DiscountPercent%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="@item.Images[0]"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="@item.Title">
+                            @item.Title
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            @{
+                                NumberFormatInfo nfi = new CultureInfo("vi-VN", false).NumberFormat;
+                                nfi.CurrencyDecimalDigits = 0;
 
-                            if (item.DiscountPercent == 0)
-                            {
-                                <div class="product__price__old"></div>
-                            }
-                            else
-                            {
-                                <div class="product__price__old">
-                                    @item.Price.ToString("C", nfi)
+                                if (item.DiscountPercent == 0)
+                                {
+                                    <div class="product__price__old"></div>
+                                }
+                                else
+                                {
+                                    <div class="product__price__old">
+                                        @item.Price.ToString("C", nfi)
+                                    </div>
+                                }
+
+                                int currentPrice = (item.Price - (item.Price * item.DiscountPercent / 100)) / 10000 * 10000;
+
+                                <div class="product__price__current">
+                                    @currentPrice.ToString("C", nfi)
                                 </div>
                             }
-
-                            int currentPrice = (item.Price - (item.Price * item.DiscountPercent / 100)) / 10000 * 10000;
-
-                            <div class="product__price__selling">
-                                @currentPrice.ToString("C", nfi)
-                            </div>
-                        }
+                        </div>
                     </div>
-                </div>
-            </a>
-        }
+                </a>
+            }
+        </div>
     </div>
 </div>
+
+<script>
+    const filterHeaders = document.querySelectorAll('.filter__header');
+    filterHeaders.forEach((filterHeader) => {
+        filterHeader.addEventListener('click', function (e) {
+            this.classList.toggle('open');
+        });
+    });
+</script>

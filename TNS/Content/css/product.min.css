@@ -67,7 +67,8 @@
     -ms-flex-pack: center;
     justify-content: center;
     border-bottom: 0.1rem solid var(--clr-ghost-white-300);
-    overflow: hidden
+    overflow: hidden;
+    max-height: 22.9rem
 }
 
     .product__thumb::before {
@@ -130,7 +131,7 @@
     font-weight: 700
 }
 
-.product__price__selling {
+.product__price__current {
     font-size: 2rem;
     color: var(--clr-sizzling-red-300)
 }
@@ -252,6 +253,10 @@
 .product-details__thumb-slide {
     border: 0.1rem solid var(--clr-ghost-white-300) !important
 }
+
+    .product-details__thumb-slide.is-active {
+        border-color: var(--clr-denim-300) !important
+    }
 
 .product-details__rating-guarantee {
     display: -webkit-box;

@@ -13,7 +13,7 @@
 <div class="container">
     <ul class="breadcrumb">
         <li><a href="/">Trang chủ</a></li>
-        <li>@Model.Type</li>
+        <li>@ViewBag.Category</li>
     </ul>
 </div>
 <div class="container product-details">
@@ -336,7 +336,7 @@
                 fixedHeight: 110,
                 isNavigation: true,
                 gap: 30,
-                focus: 'left',
+                focus: 'center',
                 cover: true,
             }
         ).mount();

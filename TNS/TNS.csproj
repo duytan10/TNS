@@ -251,6 +251,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\category.min.css" />
+    <Content Include="Content\css\filter.min.css" />
     <Content Include="Content\css\global.min.css" />
     <Content Include="Content\css\home.min.css" />
     <Content Include="Content\css\product.min.css" />

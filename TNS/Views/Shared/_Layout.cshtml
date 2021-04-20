@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using MongoDB.Bson;
+@using MongoDB.Driver;
+@using TNS.Models;
+
+@{
+    Mongo mongo = new Mongo();
+    IMongoCollection<Category> categoryCollection = mongo.db.GetCollection<Category>("category_test");
+    List<Category> categoryList = categoryCollection.Find(new BsonDocument()).ToList();
+}
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
@@ -27,7 +37,21 @@
                         <div class="search-box__keyword">
                             <input type="text" placeholder="Nhập sản phẩm cần tìm ..." />
                         </div>
-                        <div class="search-box__select"></div>
+                        <div class="search-box__select">
+                            <span class="search-box__title">
+                                Tất cả danh mục
+                                <i class="fas fa-caret-down"></i>
+                            </span>
+                            <div class="search-box__content">
+                                @foreach (var category in categoryList)
+                                {
+                                    <a href="#">@category.Name</a>
+                                }
+                            </div>
+                            <div class="search-box__icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
                     </div>
                 </form>
                 <div class="header__cart">
@@ -42,6 +66,13 @@
                     <div class="header__bottom__left__item">
                         <i class="fas fa-laptop"></i>
                         <span>DANH MỤC SẢN PHẨM</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <ul id="category">
+                            @foreach (var category in categoryList)
+                            {
+                                <li><a href="#">@category.Name</a></li>
+                            }
+                        </ul>
                     </div>
                     <div class="header__bottom__left__item">
                         <i class="fas fa-wrench"></i>
