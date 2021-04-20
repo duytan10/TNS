@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<TNS.Models.Category>
+@{
     ViewBag.Title = "Trang chủ";
 }
 
@@ -44,72 +45,16 @@
         <span class="title__content">DANH MỤC SẢN PHẨM</span>
     </div>
     <div class="home__category">
-        <a class="home__category__item" href="#">
-            <div style="background-color: #ff8f02"></div>
-            <img src="~/Content/Images/categories/gaming-workstation.png" alt="" />
-            <span>
-                GAMING
-                <br />
-                WORKSTAION
-                <br />
-                PC
-            </span>
-        </a>
-        <a class="home__category__item" href="/pages/category-details.html">
-            <div style="background-color: #fff200"></div>
-            <img src="~/Content/Images/categories/gaming-laptop.png" alt="" />
-            <span>
-                GAMING
-                <br />
-                LAPTOP
-            </span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #1eec18"></div>
-            <img src="~/Content/Images/categories/gaming-gear.png" alt="" />
-            <span>GAMING GEAR</span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #8e07ef"></div>
-            <img src="~/Content/Images/categories/phu-kien.png" alt="" />
-            <span>
-                PHỤ KIỆN
-                <br />
-                TẢN NHIỆT PC
-            </span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #00f9c9"></div>
-            <img src="~/Content/Images/categories/linh-kien.png" alt="" />
-            <span>
-                LINH KIỆN
-                <br />
-                MÁY TÍNH
-            </span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #f9495f"></div>
-            <img src="~/Content/Images/categories/man-hinh.png" alt="" />
-            <span>
-                MÀN HÌNH
-                <br />
-                MÁY TÍNH
-            </span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #665dea"></div>
-            <img src="~/Content/Images/categories/ban-ghe.png" alt="" />
-            <span>
-                BÀN GHẾ
-                <br />
-                GAMING
-            </span>
-        </a>
-        <a class="home__category__item" href="#">
-            <div style="background-color: #f1e89b"></div>
-            <img src="~/Content/Images/categories/thiet-bi-mang.png" alt="" />
-            <span>THIẾT BỊ MẠNG</span>
-        </a>
+        @foreach (var item in Model)
+        {
+            <a class="home__category__item" href="/Category/Index/@item.Id">
+                <div style="background-color: #ff8f02"></div>
+                <img src="~/Content/Images/categories/gaming-workstation.png" alt="" />
+                <span>
+                    @item.Name
+                </span>
+            </a>
+        }
     </div>
 </div>
 <div class="container home__block">

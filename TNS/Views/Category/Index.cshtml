@@ -1,0 +1,66 @@
+﻿@using System.Globalization
+@using TNS.Models
+@model List<TNS.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Styles.Render("~/Content/css/product.min.css")
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <a href="/Product/Index/@item.Id" class="splide__slide product">
+                <div class="product__discount">
+                    <span>-6%</span>
+                </div>
+                <div class="product__thumb">
+                    <img src="@item.Images[0]"
+                         alt="" />
+                </div>
+                <div class="product__body">
+                    <p class="product__title"
+                       title="@item.Title">
+                        @item.Title
+                    </p>
+                    <div class="product__rate">
+                        <div class="product__rate__star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="product__rate__amount">0 đánh giá</p>
+                    </div>
+                    <div class="product__price">
+                        @{
+                            NumberFormatInfo nfi = new CultureInfo("vi-VN", false).NumberFormat;
+                            nfi.CurrencyDecimalDigits = 0;
+
+                            if (item.DiscountPercent == 0)
+                            {
+                                <div class="product__price__old"></div>
+                            }
+                            else
+                            {
+                                <div class="product__price__old">
+                                    @item.Price.ToString("C", nfi)
+                                </div>
+                            }
+
+                            int currentPrice = (item.Price - (item.Price * item.DiscountPercent / 100)) / 10000 * 10000;
+
+                            <div class="product__price__selling">
+                                @currentPrice.ToString("C", nfi)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>

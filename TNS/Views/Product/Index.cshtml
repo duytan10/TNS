@@ -1,25 +1,373 @@
-﻿@model List<TNS.Models.Product>
+﻿@using System.Globalization
+@using TNS.Models
+@model TNS.Models.Product
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Products</h2>
+@Styles.Render("~/Content/css/product.min.css")
+@Styles.Render("~/Content/css/tab.min.css")
+@Styles.Render("~/Content/css/splide.min.css")
 
 <div class="container">
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <img src="@item.Images[0]" class="card-img-top" alt="@item.Title">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Title</h5>
-                        <p class="card-text">@item.Price</p>
-                        <a href="/Product/Details/@item.Id" class="btn btn-primary">Details</a>
+    <ul class="breadcrumb">
+        <li><a href="/">Trang chủ</a></li>
+        <li>@Model.Type</li>
+    </ul>
+</div>
+<div class="container product-details">
+    <div class="product-details__top">
+        <div class="product-details__top__left">
+            <div class="splide product-details__main-slider">
+                <div class="splide__track">
+                    <div class="splide__list">
+                        @foreach (string image in Model.Images)
+                        {
+                            <div class="splide__slide product-details__main-slide">
+                                <img src="@image"
+                                     alt="" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-        }
+            <div class="splide product-details__thumb-slider">
+                <div class="splide__track">
+                    <div class="splide__list">
+                        @foreach (string image in Model.Images)
+                        {
+                            <div class="splide__slide product-details__thumb-slide">
+                                <img src="@image"
+                                     alt="" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="splide"></div>
+        </div>
+        <div class="product-details__top__right">
+            <div>
+                <h2>@Model.Title</h2>
+                <div class="product-details__rating-guarantee">
+                    <div class="product-details__rate">
+                        <div class="product-details__rate__star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="product__rate__amount">0 đánh giá</p>
+                    </div>
+                    <div class="product-details__guarantee">
+                        <span>Bảo hành @Model.GuaranteeMonth tháng</span>
+                    </div>
+                </div>
+                <div class="product-details__short-description">
+                    <ul>
+                        @foreach (string shortDescription in Model.ShortDescriptions)
+                        {
+                            <li>@shortDescription</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="product-details__buy-info">
+                <div>
+                    <div class="product-details__status" data-status="@Model.Status.ToString().ToLower()">
+                        <i class="fa fa-circle"></i>
+                        <span>@Model.StatusType[Model.Status.ToString()].ToString().ToUpper()</span>
+                    </div>
+                    <div class="product-details__quantity">
+                        <span>Số lượng</span>
+                        <div class="product-details__quantity__wrap">
+                            <input type="text" name="quantity" value="1" />
+                            <div class="product-details__quantity__action">
+                                <span>+</span>
+                                <span>-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button">
+                        <i class="fas fa-cart-plus button__icon"></i>
+                        <span class="button__title">THÊM VÀO GIỎ</span>
+                    </button>
+                </div>
+                <div>
+                    <div class="product-details__price">
+                        @{
+                            NumberFormatInfo nfi = new CultureInfo("vi-VN", false).NumberFormat;
+                            nfi.CurrencyDecimalDigits = 0;
+
+                            if (Model.DiscountPercent == 0)
+                            {
+                                <span class="product-details__price__old"></span>
+                            }
+                            else
+                            {
+                                <span class="product-details__price__old">
+                                    @Model.Price.ToString("C", nfi)
+                                </span>
+                            }
+
+                            int currentPrice = (Model.Price - (Model.Price * Model.DiscountPercent / 100)) / 10000 * 10000;
+
+                            <span class="product-details__price__current">
+                                @currentPrice.ToString("C", nfi)
+                            </span>
+                        }
+                    </div>
+                    <button class="button">
+                        <i class="fas fa-plus button__icon"></i>
+                        <span class="button__title">ĐẶT NGAY</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-details__bottom">
+        <div class="title">
+            <span class="title__content">THÔNG TIN SẢN PHẨM</span>
+        </div>
+        <div class="tab">
+            <div class="tab__item">
+                <span class="active" data-tab-target="details">
+                    Chi tiết sản phẩm
+                </span>
+                <span data-tab-target="specifications">Thông số kỹ thuật</span>
+                <span data-tab-target="reviews">Review sản phẩm</span>
+            </div>
+            <div class="tab__content">
+                <div id="details" class="active" data-tab-content>
+                    @foreach (var item in Model.Details)
+                    {
+                        if (item.Type == ProductDetailType.Text)
+                        {
+                            <span>@item.Content</span>
+                        }
+                        else
+                        {
+                            <img src="@item.Content" alt="" />
+                        }
+                    }
+                </div>
+                <div id="specifications" data-tab-content></div>
+                <div id="reviews" data-tab-content></div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="container product__related">
+    <div class="title">
+        <span class="title__content">SẢN PHẨM LIÊN QUAN</span>
+    </div>
+    <div class="splide product__related__list">
+        <div class="splide__track">
+            <div class="splide__list">
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-6%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/vga/msi/1650%20Super%20Gaming%20X/card-man-hinh-msi-gtx-1650-super-gaming-x-trio-1-228x228.png"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Card Màn Hình MSI Geforce GTX 1650 Super Gaming X">
+                            Card Màn Hình MSI Geforce GTX 1650 Super Gaming X
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">7.990.000 đ</div>
+                            <div class="product__price__old">8.490.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-3%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/Avata%20Laptop/Aspire%207-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Laptop Acer Aspire 7 A715-42G-R4ST R5-5500U/ 8GB/ 256GB/ GTX
+                  1650 4GB/ 15.6 inch FHD/ Win 10">
+                            Laptop Acer Aspire 7 A715-42G-R4ST R5-5500U/ 8GB/ 256GB/ GTX
+                            1650 4GB/ 15.6 inch FHD/ Win 10
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">17.990.000 đ</div>
+                            <div class="product__price__old">18.490.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span></span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/vga/galax/GTX%201650%20Super%201CO/card-man-hinh-galax-gtx-1650-super-ex-1-click-oc-01-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Card Màn Hình Galax Geforce GTX 1650 Super ( 1-Click OC )">
+                            Card Màn Hình Galax Geforce GTX 1650 Super ( 1-Click OC )
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">7.390.000 đ</div>
+                            <div class="product__price__old"></div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-5%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/Avata%20Laptop/Bravo%2015-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Laptop MSI Bravo 15 A4DCR 270VN Ryzen 5 4600H/ 8GB/ 256GB NVMe/ RX5300M/ 15.6''/ Windows 10 Home">
+                            Laptop MSI Bravo 15 A4DCR 270VN Ryzen 5 4600H/ 8GB/ 256GB
+                            NVMe/ RX5300M/ 15.6''/ Windows 10 Home
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">18.290.000 đ</div>
+                            <div class="product__price__old">19.290.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="splide__slide product">
+                    <div class="product__discount">
+                        <span>-15%</span>
+                    </div>
+                    <div class="product__thumb">
+                        <img src="https://www.tncstore.vn/image/cache/catalog/chu%E1%BB%99t/Logitech/G604/chuot-logitech-g604-lightspeed-5-228x228.jpg"
+                             alt="" />
+                    </div>
+                    <div class="product__body">
+                        <p class="product__title"
+                           title="Chuột Logitech G604 Light Speed Wireless">
+                            Chuột Logitech G604 Light Speed Wireless
+                        </p>
+                        <div class="product__rate">
+                            <div class="product__rate__star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="product__rate__amount">0 đánh giá</p>
+                        </div>
+                        <div class="product__price">
+                            <div class="product__price__selling">1.690.000 đ</div>
+                            <div class="product__price__old">1.999.000 đ</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/splide.min.js")
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const mainProductSLider = new Splide('.product-details__main-slider', {
+            pagination: false,
+            arrows: false,
+        });
+
+        const thumbProductSLider = new Splide(
+            '.product-details__thumb-slider',
+            {
+                pagination: false,
+                rewind: true,
+                fixedWidth: 160,
+                fixedHeight: 110,
+                isNavigation: true,
+                gap: 30,
+                focus: 'left',
+                cover: true,
+            }
+        ).mount();
+
+        mainProductSLider.sync(thumbProductSLider).mount();
+
+        new Splide('.product__related__list', {
+            type: 'loop',
+            perPage: 4,
+            perMove: 1,
+            autoplay: true,
+            pagination: false,
+        }).mount();
+
+        const tabs = document.querySelectorAll('[data-tab-target]');
+        const tabContents = document.querySelectorAll('[data-tab-content]');
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const target = document.querySelector(`#${tab.dataset.tabTarget}`);
+
+                tabs.forEach((tab) => tab.classList.remove('active'));
+                tabContents.forEach((tabContent) =>
+                    tabContent.classList.remove('active')
+                );
+
+                tab.classList.add('active');
+                target.classList.add('active');
+
+                console.log({ tab, target })
+            });
+        });
+    });
+</script>

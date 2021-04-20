@@ -65,5 +65,11 @@ namespace TNS.Models
 
         [BsonElement("type")]
         public string Type { get; set; }
+
+        [BsonElement("brand")]
+        public string Brand { get; set; }
+
+        [BsonElement("in_stock")]
+        public int InStock { get; set; }
     }
 }
