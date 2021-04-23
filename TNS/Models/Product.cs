@@ -70,6 +70,7 @@ namespace TNS.Models
         public string Brand { get; set; }
 
         [BsonElement("in_stock")]
+        [DisplayName("In Stock")]
         public int InStock { get; set; }
     }
 }

@@ -1,0 +1,142 @@
+﻿@model TNS.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShortDescriptions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea class="form-control" rows="3" name="ShortDescriptions" id="ShortDescriptions">
+                @foreach (string des in Model.ShortDescriptions) 
+                    { 
+                         string value = des + "|";
+                         @value
+                    } 
+            </textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiscountPercent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select class="form-control" id="Status" name="status">
+                <option selected>@Model.Status.ToString()</option>
+                <option>Available</option>
+                <option>SoldOut</option>
+                <option>Reserve</option>
+            </select>
+        </div>
+    </div>
+
+    <form class="form-inline">
+        <label for="inputText" class="col-sm-2 col-form-label">Details</label>
+        <div class="form-group mb-2">
+            <label for="textType" class="sr-only">Text</label>
+            <input type="text" readonly class="form-control-plaintext" id="textType" name="textType" value="Text">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="inputText" class="sr-only">Content</label>
+            <textarea type="text" class="form-control" id="inputText" name="textContent">@Model.Details[0].Content.ToString()</textarea>
+        </div>
+        <div class="form-group mb-2">
+            <label for="imageType" class="sr-only">Image</label>
+            <input type="text" readonly class="form-control-plaintext" id="imageType" name="imageType" value="Image">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="inputImage" class="sr-only">Content</label>
+            <input type="text" class="form-control" id="inputImage" name="imageContent" value="@Model.Details[1].Content.ToString()">
+        </div>
+    </form>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GuaranteeMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GuaranteeMonth, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GuaranteeMonth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea class="form-control" name="Images" id="Images">
+                @foreach (string des in Model.Images) 
+                    { 
+                         string value = des + "|";
+                         @value
+                    } 
+            </textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.InStock, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.InStock, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

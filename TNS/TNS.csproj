@@ -232,12 +232,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,7 @@
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\product-details\chuot-gaming-asus-rog-strix-impact-ii-gundam.jpg" />
     <Content Include="Content\Images\products\ban-phim-keychron-k3.jpg" />
+    <Content Include="Content\Site.css" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
     <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
@@ -336,19 +338,23 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\ProductManager\Index.cshtml" />
-    <Content Include="Views\ProductManager\Create.cshtml" />
-    <Content Include="Views\ProductManager\Edit.cshtml" />
-    <Content Include="Views\ProductManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

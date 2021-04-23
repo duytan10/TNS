@@ -2,10 +2,10 @@
 @using TNS.Models
 @model List<TNS.Models.Product>
 @{
-    ViewBag.Title = "Index";
-}
+    ViewBag.Title = ViewBag.Name;
+} 
 
-<h2>Index</h2>
+<h2>@ViewBag.Name</h2>
 
 @Styles.Render("~/Content/css/product.min.css")
 

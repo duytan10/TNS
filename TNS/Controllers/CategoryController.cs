@@ -30,6 +30,10 @@ namespace TNS.Controllers
 
             List<Product> relatedProducts = GetRelatedproducts(objectIds);
 
+            Category category = categoryList.Find(item => item.Id.ToString().CompareTo(id) == 0);
+
+            ViewBag.Name = category.Name;
+
             return View(relatedProducts);
         }
 
