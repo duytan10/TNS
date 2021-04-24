@@ -36,6 +36,9 @@ namespace TNS.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonElement("category_id")]
+        public ObjectId CategoryId { get; set; }
+
         [BsonElement("title")]
         public string Title { get; set; }
 

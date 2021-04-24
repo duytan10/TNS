@@ -14,6 +14,7 @@ namespace TNS.Areas.Admin.Controllers
         private static List<Product> productList;
 
         private static IMongoCollection<Category> categoryCollection;
+        private static List<Category> categoryList;
 
         public ProductManagerController()
         {
@@ -21,12 +22,29 @@ namespace TNS.Areas.Admin.Controllers
             productCollection = mongo.db.GetCollection<Product>("products_test");
             productList = productCollection.Find(new BsonDocument()).ToList();
 
-            categoryCollection = mongo.db.GetCollection<Category>("products_test");
+            categoryCollection = mongo.db.GetCollection<Category>("category_test");
+            categoryList = categoryCollection.Find(new BsonDocument()).ToList();
         }
 
         // GET: ProductManager
         public ActionResult Index()
         {
+            Product lastProduct = productList.Last();
+            Category category = categoryList.Find(item => item.Id.CompareTo(lastProduct.CategoryId) == 0);
+
+            ObjectId[] productIds = category.ProductIds.ToArray();
+            int pos = Array.IndexOf(productIds, lastProduct.Id);
+
+            if (pos < 0)
+            {
+                category.ProductIds.Add(lastProduct.Id);
+                categoryCollection.FindOneAndUpdateAsync(
+                Builders<Category>.Filter.Eq("Id", lastProduct.CategoryId),
+                Builders<Category>.Update
+                    .Set("ProductIds", category.ProductIds)
+                );
+            }
+            
             return View(productList);
         }
 
@@ -42,8 +60,10 @@ namespace TNS.Areas.Admin.Controllers
         {
             try
             {
+                //Get Status
                 Status statusOption = (Status)Enum.Parse(typeof(Status), HttpContext.Request.Form["status"]);
 
+                //Get Details
                 Details detailText = new Details();
                 ProductDetailType textType = (ProductDetailType)Enum.Parse(typeof(ProductDetailType), HttpContext.Request.Form["textType"]);
                 detailText.Type = textType;
@@ -58,6 +78,7 @@ namespace TNS.Areas.Admin.Controllers
                     detailImage
                 };
 
+                //Get Short description
                 string des = Request.Form["ShortDescriptions"];
                 string[] desList = des.Split(new char[] { '|' });
                 List<string> descriptions = new List<string>();
@@ -74,6 +95,9 @@ namespace TNS.Areas.Admin.Controllers
                     images.Add(s);
                 }
 
+                //Get Category Id
+                ObjectId categoryId = new ObjectId(Request.Form["Category"]);
+
                 Product productAdded = new Product
                 {
                     Title = product.Title,
@@ -86,21 +110,11 @@ namespace TNS.Areas.Admin.Controllers
                     Images = images,
                     Type = product.Type,
                     Brand = product.Brand,
-                    InStock = product.InStock
+                    InStock = product.InStock,
+                    CategoryId = categoryId
                 };
 
                 productCollection.InsertOneAsync(productAdded);
-
-                string categoryId = Request.Form["Category"];
-                ObjectId oId = new ObjectId(categoryId);
-                //List<ObjectId> productIds = new List<ObjectId>
-                //{
-                //    productIds.Add(oPId);
-                //};
-                //categoryCollection.FindOneAndUpdateAsync(
-                //    Builders<Category>.Filter.Eq("Id", oId),
-                //    Builders<Category>.Update
-                //        .Set("ProductIds", product.Id));
 
                 return RedirectToAction("Index");
             }
