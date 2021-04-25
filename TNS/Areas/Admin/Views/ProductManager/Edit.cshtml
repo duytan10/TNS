@@ -1,142 +1,242 @@
 ﻿@model TNS.Models.Product
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
 }
 
-<h2>Edit</h2>
+@Styles.Render("~/Areas/Admin/Content/css/form.min.css")
+@Styles.Render("~/Areas/Admin/Content/css/select.min.css")
+@Styles.Render("~/Areas/Admin/Content/css/button.min.css")
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Product</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ShortDescriptions, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <textarea class="form-control" rows="3" name="ShortDescriptions" id="ShortDescriptions">
-                @foreach (string des in Model.ShortDescriptions) 
-                    { 
-                         string value = des + "|";
-                         @value
-                    } 
-            </textarea>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DiscountPercent, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <select class="form-control" id="Status" name="status">
-                <option selected>@Model.Status.ToString()</option>
-                <option>Available</option>
-                <option>SoldOut</option>
-                <option>Reserve</option>
-            </select>
-        </div>
-    </div>
-
-    <form class="form-inline">
-        <label for="inputText" class="col-sm-2 col-form-label">Details</label>
-        <div class="form-group mb-2">
-            <label for="textType" class="sr-only">Text</label>
-            <input type="text" readonly class="form-control-plaintext" id="textType" name="textType" value="Text">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="inputText" class="sr-only">Content</label>
-            <textarea type="text" class="form-control" id="inputText" name="textContent">@Model.Details[0].Content.ToString()</textarea>
-        </div>
-        <div class="form-group mb-2">
-            <label for="imageType" class="sr-only">Image</label>
-            <input type="text" readonly class="form-control-plaintext" id="imageType" name="imageType" value="Image">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="inputImage" class="sr-only">Content</label>
-            <input type="text" class="form-control" id="inputImage" name="imageContent" value="@Model.Details[1].Content.ToString()">
-        </div>
-    </form>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.GuaranteeMonth, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.GuaranteeMonth, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.GuaranteeMonth, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <textarea class="form-control" name="Images" id="Images">
-                @foreach (string des in Model.Images) 
-                    { 
-                         string value = des + "|";
-                         @value
-                    } 
-            </textarea>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.InStock, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.InStock, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
+<div class="main__content">
+    <div class="main__form card">
+        <h3 class="card__title">Chỉnh sửa sản phẩm</h3>
+        <form>
+            <div class="form__control">
+                @Html.LabelFor(model => model.Title, "Tên sản phẩm")
+                <div class="form__input">
+                    <input id="title" placeholder="Nhập tên sản phẩm" />
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.ShortDescriptions, "Mô tả ngắn")
+                <div class="form__input">
+                    <textarea id="short_descriptions"
+                              placeholder="Nhập mô tả ngắn..."
+                              rows="9"></textarea>
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.Price, "Giá sản phẩm")
+                <div class="form__input">
+                    <input id="price" placeholder="Nhập giá sản phẩm" />
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.DiscountPercent, "Giảm giá (%)")
+                <div class="form__input">
+                    <input id="discount_percent" placeholder="Nhập phần trăm giảm giá" />
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.GuaranteeMonth, "Thời gian bảo hành (tháng)")
+                <div class="form__input">
+                    <input id="guarantee_month" placeholder="Nhập thời gian bảo hành" />
+                </div>
+            </div>
+            <div class="form__control">
+                <label for="type">Danh mục sản phẩm</label>
+                <div class="form__input">
+                    <div class="select-box">
+                        <div class="select-box__current" tabindex="1">
+                            <i class="select-box__icon" data-feather="chevron-down"></i>
+                        </div>
+                        <ul class="select-box__list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form__control">
+                <label for="type">Hãng sản xuất</label>
+                <div class="form__input">
+                    <div class="select-box">
+                        <div class="select-box__current" tabindex="2">
+                            <i class="select-box__icon" data-feather="chevron-down"></i>
+                        </div>
+                        <ul class="select-box__list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.InStock, "Tồn kho")
+                <div class="form__input">
+                    <input id="in_stock" placeholder="Nhập số lượng tồn kho" />
+                </div>
+            </div>
+            <div class="form__control">
+                @Html.LabelFor(model => model.Images, "Chọn ảnh")
+                <div class="form__input">
+                    <span id="image-names">Chọn ảnh...</span>
+                    <input id="images" type="file" accept="image/*" multiple />
+                </div>
+                <div class="images-preview">
+                    <span>Xem trước ảnh</span>
+                </div>
+            </div>
+            <div class="form__action">
+                <input class="button -success" type="submit" value="Lưu lại" />
+                <input class="button" type="button" value="Quay lại" />
+            </div>
+        </form>
     </div>
 </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@Scripts.Render("~/Areas/Admin/Scripts/axios.min.js")
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const id = window.location.href.match(/([0-9a-z]){24}$/)[0];
+
+        axios.get('http://localhost:5000/categories')
+            .then(res => {
+                const categories = res.data;
+                const categoryCurrent = document.getElementsByClassName('select-box__current')[0];
+                const categoryList = document.getElementsByClassName('select-box__list')[0];
+
+                categories.forEach((category, index) => {
+                    const value = `<div class="select-box__value">
+                                       <input id="${category._id}"
+                                           class="select-box__input"
+                                           type="radio"
+                                           name="category"
+                                           checked=${index === 0 ? "checked" : ""} />
+                                        <p class="select-box__input-text">${category.name}</p>
+                                   </div>`;
+                    const option = `<li>
+                                        <label class="select-box__option" for="${category._id}">${category.name}</label>
+                                    </li>`;
+
+                    categoryCurrent.innerHTML += value;
+                    categoryList.innerHTML += option;
+                })
+            })
+            .catch(console.error);
+
+        axios.get('http://localhost:5000/brands')
+            .then(res => {
+                const brands = res.data;
+                const brandCurrent = document.getElementsByClassName('select-box__current')[1];
+                const brandList = document.getElementsByClassName('select-box__list')[1];
+
+                brands.forEach((brand, index) => {
+                    const value = `<div class="select-box__value">
+                                       <input id="${brand._id}"
+                                           class="select-box__input"
+                                           type="radio"
+                                           name="brand"
+                                           checked=${index === 0 ? "checked" : ""} />
+                                        <p class="select-box__input-text">${brand.name}</p>
+                                   </div>`;
+                    const option = `<li>
+                                        <label class="select-box__option" for="${brand._id}">${brand.name}</label>
+                                    </li>`;
+
+                    brandCurrent.innerHTML += value;
+                    brandList.innerHTML += option;
+                })
+            })
+            .catch(console.error);
+
+        const images = document.querySelector('#images');
+        const imagesPreview = document.querySelector('.images-preview');
+        images.addEventListener('change', function () {
+            imagesPreview.innerHTML = '';
+            const files = this.files;
+
+            const readAndPreview = (file) => {
+                const reader = new FileReader();
+
+                reader.addEventListener(
+                    'load',
+                    function () {
+                        const image = new Image();
+                        image.src = this.result;
+                        imagesPreview.appendChild(image);
+                    },
+                    false
+                );
+
+                reader.readAsDataURL(file);
+            };
+
+            if (files) {
+                [...files].forEach(readAndPreview);
+            }
+        });
+
+        axios.get(`http://localhost:5000/products/${id}`)
+            .then(res => {
+                const product = res.data;
+                document.querySelector('#title').value = product.title;
+                document.querySelector('#short_descriptions').value = product.short_descriptions.join('\n');
+                document.querySelector('#discount_percent').value = product.discount_percent;
+                document.querySelector('#price').value = product.price;
+                document.querySelector('#guarantee_month').value = product.guarantee_month;
+
+                const categories = document.querySelectorAll('input[name="category"]');
+                categories.forEach(category => category.checked = false);
+                const categoryId = [...document.querySelectorAll('.select-box__option')]
+                    .find(option => option.innerHTML === product.category)
+                    .getAttribute('for');
+
+                document.querySelector(`input[id="${categoryId}"][name="category"]`).checked = true;
+
+                const brands = document.querySelectorAll('input[name="brand"]');
+                brands.forEach(brand => brand.checked = false);
+                const brandId = [...document.querySelectorAll('.select-box__option')]
+                    .find(option => option.innerHTML === product.brand)
+                    .getAttribute('for');
+
+                document.querySelector(`input[id="${brandId}"][name="brand"]`).checked = true;
+
+                document.querySelector('#in_stock').value = product.in_stock;
+                const imagesPreview = document.querySelector('.images-preview');
+                imagesPreview.innerHTML = '';
+                product.images.forEach(src => {
+                    const image = new Image();
+                    image.src = src;
+                    imagesPreview.appendChild(image);
+                });
+
+
+            })
+            .catch(console.err);
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const images = [...document.querySelector('.images-preview').children].map(img => img.src);
+            const category = document.querySelector('input[name="category"]:checked').nextElementSibling.innerHTML;
+            const brand = document.querySelector('input[name="brand"]:checked').nextElementSibling.innerHTML;
+
+            axios
+                .post(`http://localhost:5000/products/update/${id}`, {
+                    title: document.querySelector('#title').value,
+                    short_descriptions: document.querySelector('#short_descriptions').value.split('\n'),
+                    discount_percent: +document.querySelector('#discount_percent').value,
+                    price: +document.querySelector('#price').value,
+                    status: "Còn hàng",
+                    details: [],
+                    guarantee_month: +document.querySelector('#guarantee_month').value,
+                    images,
+                    category,
+                    brand,
+                    in_stock: +document.querySelector('#in_stock').value
+                })
+                .then(res => window.location.href = "/Admin/ProductManager")
+                .catch(console.err);
+        });
+    });
+
+    document.querySelector('input[value="Quay lại"]').addEventListener('click', () => window.history.back());
+</script>
+

@@ -11,7 +11,7 @@ namespace TNS.Models
         public Mongo()
         {
             client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
-            db = client.GetDatabase("tns_test");
+            db = client.GetDatabase("tns");
         }
     }
 }

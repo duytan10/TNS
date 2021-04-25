@@ -252,6 +252,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\css\button.min.css" />
+    <Content Include="Areas\Admin\Content\css\card.min.css" />
+    <Content Include="Areas\Admin\Content\css\global.min.css" />
+    <Content Include="Areas\Admin\Content\css\select.min.css" />
+    <Content Include="Areas\Admin\Content\css\tabulator.min.css" />
+    <Content Include="Areas\Admin\Content\css\form.min.css" />
+    <Content Include="Areas\Admin\Content\images\avatar\user-1.jpg" />
+    <Content Include="Areas\Admin\Content\images\logo.png" />
+    <Content Include="Areas\Admin\Content\images\logo.svg" />
+    <Content Include="Areas\Admin\Scripts\axios.min.js" />
+    <Content Include="Areas\Admin\Scripts\feather.min.js" />
+    <Content Include="Areas\Admin\Scripts\tabulator.min.js" />
+    <Content Include="Content\css\category.min.css" />
+    <Content Include="Content\css\filter.min.css" />
     <Content Include="Content\css\global.min.css" />
     <Content Include="Content\css\home.min.css" />
     <Content Include="Content\css\product.min.css" />
@@ -338,7 +352,6 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductManager\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManager\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManager\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManager\Delete.cshtml" />
@@ -353,6 +366,7 @@
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>

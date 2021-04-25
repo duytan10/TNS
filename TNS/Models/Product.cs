@@ -26,7 +26,7 @@ namespace TNS.Models
 
     public class Product
     {
-        public Dictionary<string, string> StatusType = new Dictionary<string, string>()
+        public static Dictionary<string, string> StatusType = new Dictionary<string, string>()
         {
             {"Available", "Còn hàng" },
             {"SoldOut", "Hết hàng" },
@@ -35,9 +35,6 @@ namespace TNS.Models
 
         [BsonId]
         public ObjectId Id { get; set; }
-
-        [BsonElement("category_id")]
-        public ObjectId CategoryId { get; set; }
 
         [BsonElement("title")]
         public string Title { get; set; }
@@ -66,8 +63,8 @@ namespace TNS.Models
         [BsonElement("images")]
         public List<string> Images { get; set; }
 
-        [BsonElement("type")]
-        public string Type { get; set; }
+        [BsonElement("category")]
+        public string Category { get; set; }
 
         [BsonElement("brand")]
         public string Brand { get; set; }

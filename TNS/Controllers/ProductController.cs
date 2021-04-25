@@ -15,7 +15,7 @@ namespace TNS.Controllers
         public ProductController()
         {
             Mongo mongo = new Mongo();
-            productCollection = mongo.db.GetCollection<Product>("products_test");
+            productCollection = mongo.db.GetCollection<Product>("products");
             productList = productCollection.Find(new BsonDocument()).ToList();
         }
 

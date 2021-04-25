@@ -18,8 +18,8 @@ namespace TNS.Controllers
         public CategoryController()
         {
             Mongo mongo = new Mongo();
-            categoryCollection = mongo.db.GetCollection<Category>("category_test");
-            productCollection = mongo.db.GetCollection<Product>("products_test");
+            categoryCollection = mongo.db.GetCollection<Category>("categories");
+            productCollection = mongo.db.GetCollection<Product>("products");
             categoryList = categoryCollection.Find(new BsonDocument()).ToList();
         }
 

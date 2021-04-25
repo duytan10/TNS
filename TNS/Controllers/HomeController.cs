@@ -14,7 +14,7 @@ namespace TNS.Controllers
         public HomeController()
         {
             Mongo mongo = new Mongo();
-            categoryCollection = mongo.db.GetCollection<Category>("category_test");
+            categoryCollection = mongo.db.GetCollection<Category>("categories");
             categoryList = categoryCollection.Find(new BsonDocument()).ToList();
         }
 

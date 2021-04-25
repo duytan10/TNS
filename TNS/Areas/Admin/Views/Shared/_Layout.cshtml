@@ -4,122 +4,136 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
-    @Styles.Render("~/Content/css/global.min.css")
-    <title>@ViewBag.Title | TNS</title>
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico" type="image/x-icon" />
+    @Styles.Render("~/Areas/Admin/Content/css/global.min.css")
+    @Styles.Render("~/Areas/Admin/Content/css/card.min.css")
+    <title>Trang quản lý - @ViewBag.Title</title>
 </head>
 <body>
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <span> Hotline : 090 3050 398 &bull; Email: namnt18@uef.edu.vn </span>
-            </div>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="~/Areas/Admin/Content/images/logo.svg" alt="" />
         </div>
-        <div class="header__main">
-            <div class="container">
-                <div class="header__logo">
-                    <a href="/">
-                        <img src="~/Content/Images/logo.png" alt="Logo của TNS" />
-                    </a>
-                </div>
-                <form id="search-form">
-                    <div class="search-box">
-                        <div class="search-box__keyword">
-                            <input type="text" placeholder="Nhập sản phẩm cần tìm ..." />
-                        </div>
-                        <div class="search-box__select"></div>
-                    </div>
-                </form>
-                <div class="header__cart">
-                    <i class="fas fa-shopping-cart header__cart__icon"></i>
-                    <span class="header__cart__amount">0</span>
+        <div class="sidebar__list">
+            <div class="sidebar__item">
+                <div class="sidebar__item__title">
+                    <i data-feather="home"></i>
+                    <span>Màn hình chính</span>
                 </div>
             </div>
-        </div>
-        <div class="header__bottom">
-            <div class="container">
-                <div class="header__bottom__left">
-                    <div class="header__bottom__left__item">
-                        <i class="fas fa-laptop"></i>
-                        <span>DANH MỤC SẢN PHẨM</span>
-                    </div>
-                    <div class="header__bottom__left__item">
-                        <i class="fas fa-wrench"></i>
-                        <a href="#">XÂY DỰNG CẤU HÌNH</a>
-                    </div>
-                    <div class="header__bottom__left__item">
-                        <i class="fas fa-tag"></i>
-                        <a href="#">SẢN PHẨM GIẢM GIÁ</a>
-                    </div>
+            <span class="sidebar__heading">Quản lý</span>
+            <div class="sidebar__item">
+                <div class="sidebar__item__title -has-list">
+                    <i data-feather="folder"></i>
+                    <span>Danh mục</span>
+                    <i data-feather="chevron-right"></i>
                 </div>
-                <div class="header__bottom__right">
-                    <a href="https://www.facebook.com/cyberbot.x66"
-                       rel="noopener noreferrer"
-                       target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" rel="noopener noreferrer" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" rel="noopener noreferrer" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <ul class="sidebar__item__list">
+                    <li class="active">
+                        <i data-feather="list"></i>
+                        @Html.ActionLink("Danh sách", "Index", "CategoryManager")
+                    </li>
+                    <li>
+                        <i data-feather="plus"></i>
+                        @Html.ActionLink("Thêm mới", "Create", "CategoryManager")
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__item">
+                <div class="sidebar__item__title -has-list">
+                    <i data-feather="tag"></i>
+                    <span>Hãng sản xuất</span>
+                    <i data-feather="chevron-right"></i>
                 </div>
+                <ul class="sidebar__item__list">
+                    <li>
+                        <i data-feather="list"></i>
+                        @Html.ActionLink("Danh sách", "Index", "BrandManager")
+                    </li>
+                    <li>
+                        <i data-feather="plus"></i>
+                        @Html.ActionLink("Thêm mới", "Create", "BrandManager")
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__item">
+                <div class="sidebar__item__title -has-list">
+                    <i data-feather="shopping-bag"></i>
+                    <span>Sản phẩm</span>
+                    <i data-feather="chevron-right"></i>
+                </div>
+                <ul class="sidebar__item__list">
+                    <li>
+                        <i data-feather="list"></i>
+                        @Html.ActionLink("Danh sách", "Index", "ProductManager")
+                    </li>
+                    <li>
+                        <i data-feather="plus"></i>
+                        @Html.ActionLink("Thêm mới", "Create", "ProductManager")
+                    </li>
+                </ul>
             </div>
         </div>
-    </header>
-    @RenderBody()
-    <footer class="footer">
-        <div class="footer__top">
-            <div class="container">
-                <div>
-                    <h4 class="footer__top__title">Thông tin chung</h4>
-                    <div class="footer__top__group">
-                        <a href="#">Giới thiệu</a>
-                        <a href="#">Tuyển dụng</a>
-                        <a href="#">Tin tức</a>
-                        <a href="#">Ý kiến khách hàng</a>
-                        <a href="#">Lên hệ hợp tác</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer__top__title">Chính sách chung</h4>
-                    <div class="footer__top__group">
-                        <a href="#">Quy định chung</a>
-                        <a href="#">Chính sách vận chuyển</a>
-                        <a href="#">Chính sách bảo hành</a>
-                        <a href="#">Chính sách đổi, trả lại hàng</a>
-                        <a href="#">Chính sách cho doanh nghiệp</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer__top__title">Thông tin khuyến mãi</h4>
-                    <div class="footer__top__group">
-                        <a href="#">Sản phẩm bán chạy</a>
-                        <a href="#">Sản phẩm khuyến mãi</a>
-                        <a href="#">Hàng thanh lý</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="footer__top__title">Follow us!</h4>
-                    <div class="footer__top__list">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+    </aside>
+    <main class="main">
+        <div class="main__header card">
+            <span class="main__header__item">
+                <i data-feather="search"></i>
+            </span>
+            <span class="main__header__item">
+                <i data-feather="bell"></i>
+            </span>
+            <div class="main__header__user">
+                <span class="main__header__user__name">Nam Nguyễn</span>
+                <span class="main__header__user__role">Admin</span>
+                <img class="main__header__user__avatar"
+                     src="~/Areas/Admin/Content/images/avatar/user-1.jpg"
+                     alt="" />
             </div>
         </div>
-        <div class="footer__bottom">
-            <div class="container">
-                <span>
-                    &copy; @DateTime.Now.Year - Bản quyền thuộc nhóm TNS - Trường Đại học Kinh tế Tài
-                    Chính TP. HCM
-                </span>
-            </div>
+        <div class="main__content">
+            @RenderBody()
         </div>
-    </footer>
-    @Scripts.Render("https://kit.fontawesome.com/7adaed3120.js")
+    </main>
+
+    @Scripts.Render("~/Areas/Admin/Scripts/feather.min.js")
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            const sidebarItems = document.querySelectorAll(
+                '.sidebar__item__title.-has-list'
+            );
+            sidebarItems.forEach((sidebarItem) => {
+                sidebarItem.addEventListener('click', function () {
+                    this.classList.toggle('-active');
+
+                    const list = this.nextElementSibling;
+                    if (list.style.maxHeight) {
+                        list.style.maxHeight = null;
+                    } else {
+                        list.style.maxHeight = `${list.scrollHeight / 10}rem`;
+                    }
+                });
+
+                const list = sidebarItem.nextElementSibling;
+                if (list.style.maxHeight) {
+                    list.style.maxHeight = null;
+                } else {
+                    list.style.maxHeight = `${list.scrollHeight / 10}rem`;
+                }
+            });
+
+            const listItems = document.querySelectorAll('.sidebar__item__list li');
+            listItems.forEach((listItem, _, array) => {
+                if (listItem.classList.contains('-active')) return;
+
+                listItem.addEventListener('click', function () {
+                    array.forEach((item) => item.classList.remove('-active'));
+                    this.classList.add('-active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

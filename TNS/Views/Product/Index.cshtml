@@ -13,7 +13,7 @@
 <div class="container">
     <ul class="breadcrumb">
         <li><a href="/">Trang chủ</a></li>
-        <li>@Model.Type</li>
+        <li>@Model.Category</li>
     </ul>
 </div>
 <div class="container product-details">
@@ -78,7 +78,7 @@
                 <div>
                     <div class="product-details__status" data-status="@Model.Status.ToString().ToLower()">
                         <i class="fa fa-circle"></i>
-                        <span>@Model.StatusType[Model.Status.ToString()].ToString().ToUpper()</span>
+                        <span>@Product.StatusType[Model.Status.ToString()].ToString().ToUpper()</span>
                     </div>
                     <div class="product-details__quantity">
                         <span>Số lượng</span>
@@ -190,7 +190,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">7.990.000 đ</div>
+                            <div class="product__price__current">7.990.000 đ</div>
                             <div class="product__price__old">8.490.000 đ</div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">17.990.000 đ</div>
+                            <div class="product__price__current">17.990.000 đ</div>
                             <div class="product__price__old">18.490.000 đ</div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">7.390.000 đ</div>
+                            <div class="product__price__current">7.390.000 đ</div>
                             <div class="product__price__old"></div>
                         </div>
                     </div>
@@ -280,7 +280,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">18.290.000 đ</div>
+                            <div class="product__price__current">18.290.000 đ</div>
                             <div class="product__price__old">19.290.000 đ</div>
                         </div>
                     </div>
@@ -309,7 +309,7 @@
                             <p class="product__rate__amount">0 đánh giá</p>
                         </div>
                         <div class="product__price">
-                            <div class="product__price__selling">1.690.000 đ</div>
+                            <div class="product__price__current">1.690.000 đ</div>
                             <div class="product__price__old">1.999.000 đ</div>
                         </div>
                     </div>
@@ -365,8 +365,6 @@
 
                 tab.classList.add('active');
                 target.classList.add('active');
-
-                console.log({ tab, target })
             });
         });
     });

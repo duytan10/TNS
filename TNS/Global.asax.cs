@@ -13,7 +13,7 @@ namespace TNS
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Environment.SetEnvironmentVariable("connectionString", "mongodb+srv://admin:admin@cluster0.cnzt7.mongodb.net/tns_test?connect=replicaSet");
+            Environment.SetEnvironmentVariable("connectionString", "mongodb+srv://admin:admin@cluster0.cnzt7.mongodb.net/tns?connect=replicaSet");
         }
     }
 }

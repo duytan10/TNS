@@ -1,56 +1,90 @@
-﻿@model IEnumerable<TNS.Models.Product>
+﻿@model List<TNS.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách sản phẩm";
 }
 
-<h2>Index</h2>
+@Styles.Render("~/Areas/Admin/Content/css/tabulator.min.css")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InStock)
-        </th>
-        <th></th>
-    </tr>
+<div class="main__content">
+    <h3 class="main__content__header">Danh sách sản phẩm</h3>
+    <div id="product-table"></div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InStock)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id})
-        </td>
-    </tr>
-}
+@Scripts.Render("~/Areas/Admin/Scripts/axios.min.js")
+@Scripts.Render("~/Areas/Admin/Scripts/tabulator.min.js")
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        axios.get('http://localhost:5000/products')
+            .then(res => {
+                const tabledata = res.data
+                    .map(item => {
+                        item.images = item.images[0];
+                        return item;
+                    });
 
-</table>
+                const table = new Tabulator('#product-table', {
+                    data: tabledata,
+                    layout: 'fitColumns',
+                    tooltips: true,
+                    pagination: 'local',
+                    paginationSize: 10,
+                    movableColumns: true,
+                    resizableRows: true,
+                    initialSort: [{ column: 'name', dir: 'asc' }],
+                    rowClick: function (e, row) {
+                        location.href = '/Admin/ProductManager/Edit/' + row._row.data._id;
+                    },
+                    columns: [
+                        {
+                            title: 'Hình ảnh',
+                            field: 'images',
+                            width: 120,
+                            formatter: 'image',
+                            formatterParams: {
+                                height: '10rem',
+                                width: '10rem',
+                            },
+                        },
+                        {
+                            title: 'Tên sản phẩm',
+                            field: 'title',
+                            width: '700',
+                            formatter: function (cell) {
+                                return `<span style="font-weight: 700; color: var(--clr-denim-500)">${cell.getValue()}</span>`;
+                            },
+                        },
+                        {
+                            title: 'Giá gốc',
+                            field: 'price',
+                            width: 150,
+                            formatter: 'money',
+                            formatterParams: {
+                                decimal: '.',
+                                thousand: ',',
+                                symbol: ' đ',
+                                symbolAfter: 'p',
+                                precision: false,
+                            },
+                        },
+                        {
+                            title: 'Giảm giá (%)',
+                            field: 'discount_percent',
+                            width: 150,
+                        },
+                        {
+                            title: 'Trạng thái',
+                            field: 'status',
+                            width: 120,
+                        },
+                        {
+                            title: 'Số lượng tồn kho',
+                            field: 'in_stock',
+                            width: 200,
+                        },
+                    ],
+                });
+            })
+            .catch(console.err);
+    })
+</script>
