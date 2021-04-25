@@ -28,22 +28,6 @@ namespace TNS.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            //Product lastProduct = productList.Last();
-            //Category category = categoryList.Find(item => item.Id.CompareTo(lastProduct.CategoryId) == 0);
-
-            //ObjectId[] productIds = category.ProductIds.ToArray();
-            //int pos = Array.IndexOf(productIds, lastProduct.Id);
-
-            //if (pos < 0)
-            //{
-            //    category.ProductIds.Add(lastProduct.Id);
-            //    categoryCollection.FindOneAndUpdateAsync(
-            //    Builders<Category>.Filter.Eq("Id", lastProduct.CategoryId),
-            //    Builders<Category>.Update
-            //        .Set("ProductIds", category.ProductIds)
-            //    );
-            //}
-
             return View();
         }
 
@@ -52,11 +36,9 @@ namespace TNS.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
-            Product product = productList.Find(item => item.Id.ToString().CompareTo(id) == 0);
-
-            return View(product);
+            return View();
         }
 
         public ActionResult Delete(string id)

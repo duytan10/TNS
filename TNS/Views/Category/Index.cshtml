@@ -99,7 +99,7 @@
                                 nfi.CurrencyDecimalDigits = 0;
 
                                 int currentPrice = (product.Price - (product.Price * product.DiscountPercent / 100)) / 10000 * 10000;
-                                <div class="product__price__selling">
+                                <div class="product__price__current">
                                     @currentPrice.ToString("C", nfi)
                                 </div>
 
